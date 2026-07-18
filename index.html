@@ -1,383 +1,364 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Forge Ascent — Growth Systems for Contractors & Service Pros</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      color: #1a1a2e;
-      background: #ffffff;
-      line-height: 1.6;
-    }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-
-    /* Header / Nav */
-    nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 24px; max-width: 1200px; margin: 0 auto;
-    }
-    .logo { font-size: 24px; font-weight: 900; letter-spacing: -0.5px; }
-    .logo span { color: #e85d3a; }
-    .nav-links { display: flex; gap: 32px; align-items: center; }
-    .nav-links a { text-decoration: none; color: #1a1a2e; font-weight: 500; font-size: 15px; }
-    .nav-cta {
-      background: #e85d3a; color: #fff !important; padding: 10px 20px;
-      border-radius: 8px; font-weight: 600;
-    }
-
-    /* Hero */
-    .hero {
-      text-align: center; padding: 80px 24px 60px;
-      background: linear-gradient(135deg, #faf6f0 0%, #f0ebe3 100%);
-    }
-    .hero h1 {
-      font-size: clamp(36px, 6vw, 56px); font-weight: 900;
-      line-height: 1.15; letter-spacing: -1px; max-width: 850px; margin: 0 auto 16px;
-    }
-    .hero h1 span { color: #e85d3a; }
-    .hero .sub {
-      font-size: 18px; color: #5a5a72; max-width: 650px;
-      margin: 0 auto 32px; font-weight: 500;
-    }
-    .hero p {
-      font-size: 16px; color: #5a5a72; max-width: 700px;
-      margin: 0 auto 40px;
-    }
-    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .btn-primary {
-      background: #1a1a2e; color: #fff; padding: 16px 32px;
-      border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 16px;
-      display: inline-block; transition: background 0.2s;
-    }
-    .btn-primary:hover { background: #2d2d4a; }
-    .btn-secondary {
-      background: transparent; color: #1a1a2e; padding: 14px 32px;
-      border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 16px;
-      border: 2px solid #1a1a2e; display: inline-block; transition: background 0.2s;
-    }
-    .btn-secondary:hover { background: #f0ebe3; }
-    .hero-trust { margin-top: 40px; font-size: 14px; color: #8a8aa0; }
-
-    /* Stats Bar */
-    .stats {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 24px; padding: 48px 24px; text-align: center;
-      background: #1a1a2e; color: #fff;
-    }
-    .stat h2 { font-size: 36px; font-weight: 800; color: #e85d3a; }
-    .stat p { font-size: 14px; color: #b0b0c0; margin-top: 4px; }
-
-    /* Section headings */
-    .section { padding: 80px 24px; }
-    .section-label {
-      text-transform: uppercase; letter-spacing: 2px; font-size: 13px;
-      font-weight: 600; color: #e85d3a; margin-bottom: 12px;
-    }
-    .section h2 {
-      font-size: clamp(28px, 4vw, 40px); font-weight: 800;
-      letter-spacing: -0.5px; max-width: 600px;
-    }
-
-    /* What We Do */
-    .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 40px; }
-    .service-card {
-      background: #faf6f0; border-radius: 16px; padding: 32px;
-      transition: transform 0.2s;
-    }
-    .service-card:hover { transform: translateY(-4px); }
-    .service-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
-    .service-card p { font-size: 14px; color: #5a5a72; margin-bottom: 20px; line-height: 1.7; }
-    .service-card a { color: #e85d3a; font-weight: 600; text-decoration: none; font-size: 14px; }
-
-    /* Why */
-    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 40px; }
-    .why-item { padding: 24px; }
-    .why-item .icon { font-size: 28px; margin-bottom: 12px; }
-    .why-item h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-    .why-item p { font-size: 14px; color: #5a5a72; line-height: 1.7; }
-
-    /* Testimonials */
-    .testimonials { background: #faf6f0; }
-    .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 40px; }
-    .testimonial {
-      background: #fff; border-radius: 16px; padding: 32px;
-      border: 1px solid #ece4d8;
-    }
-    .testimonial .stars { color: #e85d3a; font-size: 18px; margin-bottom: 16px; }
-    .testimonial blockquote { font-size: 15px; color: #1a1a2e; line-height: 1.8; margin-bottom: 20px; font-style: italic; }
-    .testimonial cite { font-style: normal; }
-    .testimonial cite strong { display: block; font-size: 15px; }
-    .testimonial cite span { font-size: 13px; color: #8a8aa0; }
-
-    /* Pricing */
-    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 40px; align-items: start; }
-    .pricing-card {
-      background: #fff; border: 1px solid #ece4d8; border-radius: 16px;
-      padding: 40px 32px; position: relative;
-    }
-    .pricing-card.featured {
-      border: 2px solid #e85d3a; transform: scale(1.03);
-    }
-    .pricing-card .badge {
-      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-      background: #e85d3a; color: #fff; padding: 4px 16px; border-radius: 20px;
-      font-size: 12px; font-weight: 700; text-transform: uppercase;
-    }
-    .pricing-card .plan { font-size: 14px; font-weight: 600; color: #e85d3a; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-    .pricing-card h3 { font-size: 42px; font-weight: 800; margin-bottom: 8px; }
-    .pricing-card h3 span { font-size: 16px; font-weight: 500; color: #8a8aa0; }
-    .pricing-card .desc { font-size: 14px; color: #5a5a72; margin-bottom: 24px; }
-    .pricing-card ul { list-style: none; margin-bottom: 32px; }
-    .pricing-card ul li { padding: 8px 0; font-size: 14px; border-bottom: 1px solid #f0ebe3; }
-    .pricing-card ul li::before { content: "✓ "; color: #e85d3a; font-weight: 700; }
-    .pricing-card .btn-pricing {
-      display: block; text-align: center; background: #1a1a2e; color: #fff;
-      padding: 14px; border-radius: 10px; text-decoration: none; font-weight: 600;
-    }
-    .pricing-card.featured .btn-pricing { background: #e85d3a; }
-
-    /* FAQ */
-    .faq-list { max-width: 700px; margin: 40px auto 0; }
-    .faq-item { padding: 20px 0; border-bottom: 1px solid #ece4d8; }
-    .faq-item h3 { font-size: 16px; font-weight: 600; cursor: pointer; }
-    .faq-item p { font-size: 14px; color: #5a5a72; margin-top: 8px; }
-
-    /* CTA */
-    .cta {
-      text-align: center; padding: 80px 24px;
-      background: linear-gradient(135deg, #1a1a2e, #2d2d4a);
-      color: #fff;
-    }
-    .cta h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; max-width: 700px; margin: 0 auto 16px; }
-    .cta p { color: #b0b0c0; max-width: 550px; margin: 0 auto 32px; }
-    .cta .btn-primary { background: #e85d3a; }
-    .cta .btn-primary:hover { background: #d14e2e; }
-    .cta .phone { margin-top: 20px; font-size: 14px; color: #8a8aa0; }
-
-    /* Footer */
-    footer {
-      padding: 32px 24px; text-align: center;
-      font-size: 13px; color: #8a8aa0; border-top: 1px solid #ece4d8;
-    }
-    footer .logo { display: inline-block; margin-bottom: 8px; font-size: 20px; }
-
-    @media (max-width: 768px) {
-      nav { flex-direction: column; gap: 16px; }
-      .nav-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
-      .pricing-card.featured { transform: none; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Forge Ascent — Growth Systems for Contractors & Service Pros</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --charcoal: #232323;
+  --charcoal-light: #323232;
+  --gold: #C9A23F;
+  --gold-dark: #af871b;
+  --black: #000000;
+  --white: #fff;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: var(--white);
+  background: var(--charcoal);
+  line-height: 1.6;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 24px; max-width: 1200px; margin: 0 auto;
+  background: var(--black);
+}
+.logo { font-size: 24px; font-weight: 900; letter-spacing: -0.5px; color: var(--white); }
+.logo span { color: var(--gold); }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a { text-decoration: none; color: var(--gold); font-weight: 500; font-size: 15px; transition: color 0.2s; }
+.nav-links a:hover { color: var(--white); }
+.nav-cta {
+  background: var(--gold); color: var(--black) !important; padding: 10px 20px;
+  border-radius: 8px; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  border: none;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--gold-dark); }
+.hero {
+  text-align: center; padding: 80px 24px 60px;
+  background: linear-gradient(135deg, var(--black) 0%, var(--charcoal) 100%);
+}
+.hero h1 {
+  font-size: clamp(36px, 6vw, 56px); font-weight: 900;
+  line-height: 1.15; letter-spacing: -1px; max-width: 850px; margin: 0 auto 16px; color: var(--gold);
+}
+.hero .sub {
+  font-size: 18px; color: var(--gold); max-width: 650px;
+  margin: 0 auto 32px; font-weight: 500;
+}
+.hero p {
+  font-size: 16px; color: #fffbea; max-width: 700px;
+  margin: 0 auto 40px;
+}
+.hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--gold); color: var(--black); padding: 16px 32px;
+  border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 16px;
+  display: inline-block; transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: none;
+}
+.btn-primary:hover { background: var(--gold-dark); }
+.btn-secondary {
+  background: transparent; color: var(--gold); padding: 14px 32px;
+  border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 16px;
+  border: 2px solid var(--gold); display: inline-block; transition: background 0.2s, color 0.2s;
+}
+.btn-secondary:hover { background: var(--gold); color: var(--black); }
+.hero-trust { margin-top: 40px; font-size: 14px; color: #fffbea; }
+.stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px; padding: 48px 24px; text-align: center;
+  background: var(--black); color: var(--gold);
+}
+.stat h2 { font-size: 36px; font-weight: 800; color: var(--gold); }
+.stat p { font-size: 14px; color: #e1c98a; margin-top: 4px; }
+.section { padding: 80px 24px; background: var(--charcoal-light); }
+.section-label {
+  text-transform: uppercase; letter-spacing: 2px; font-size: 13px;
+  font-weight: 600; color: var(--gold); margin-bottom: 12px;
+}
+.section h2 {
+  font-size: clamp(28px, 4vw, 40px); font-weight: 800;
+  letter-spacing: -0.5px; max-width: 600px; color: var(--gold);
+}
+.services { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 40px; }
+.service-card {
+  background: var(--black); border-radius: 16px; padding: 32px;
+  transition: transform 0.2s; color: var(--white);
+  border: 1.5px solid var(--gold-dark);
+}
+.service-card:hover { transform: translateY(-4px); box-shadow: 0 4px 18px rgba(201,162,63,0.12); }
+.service-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--gold); }
+.service-card p { font-size: 14px; color: #fffbea; margin-bottom: 20px; line-height: 1.7; }
+.service-card a { color: var(--gold); font-weight: 700; text-decoration: none; font-size: 14px; }
+.why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 40px; }
+.why-item { padding: 24px; background: var(--charcoal); border-radius: 12px; color: var(--white); border: 1px solid var(--gold-dark); }
+.why-item .icon { font-size: 28px; margin-bottom: 12px; color: var(--gold); }
+.why-item h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--gold); }
+.why-item p { font-size: 14px; color: #fffbea; line-height: 1.7; }
+.testimonials { background: var(--charcoal-light); }
+.testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 40px; }
+.testimonial {
+  background: var(--black); border-radius: 16px; padding: 32px;
+  border: 1px solid var(--gold-dark); color: var(--white);
+}
+.testimonial .stars { color: var(--gold); font-size: 18px; margin-bottom: 16px; }
+.testimonial blockquote { font-size: 15px; color: var(--white); line-height: 1.8; margin-bottom: 20px; font-style: italic; }
+.testimonial cite { font-style: normal; color: var(--gold); }
+.testimonial cite strong { display: block; font-size: 15px; }
+.testimonial cite span { font-size: 13px; color: #e1c98a; }
+.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 40px; align-items: start; }
+.pricing-card {
+  background: var(--black); border: 1px solid var(--gold-dark); border-radius: 16px;
+  padding: 40px 32px; position: relative; color: var(--white);
+}
+.pricing-card.featured {
+  border: 2px solid var(--gold); transform: scale(1.03); background: var(--charcoal-light);
+}
+.pricing-card .badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--gold); color: var(--black); padding: 4px 16px; border-radius: 20px;
+  font-size: 12px; font-weight: 700; text-transform: uppercase; border: 1.5px solid var(--black);
+}
+.pricing-card .plan { font-size: 14px; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.pricing-card h3 { font-size: 42px; font-weight: 800; margin-bottom: 8px; color: var(--gold); }
+.pricing-card h3 span { font-size: 16px; font-weight: 500; color: #e1c98a; }
+.pricing-card .desc { font-size: 14px; color: #fffbea; margin-bottom: 24px; }
+.pricing-card ul { list-style: none; margin-bottom: 32px; }
+.pricing-card ul li { padding: 8px 0; font-size: 14px; border-bottom: 1px solid var(--charcoal-light); }
+.pricing-card ul li::before { content: "✓ "; color: var(--gold); font-weight: 700; }
+.pricing-card .btn-pricing {
+  display: block; text-align: center; background: var(--gold); color: var(--black);
+  padding: 14px; border-radius: 10px; text-decoration: none; font-weight: 600;
+  margin-top: 16px; border: none;
+  transition: background 0.2s;
+}
+.pricing-card.featured .btn-pricing { background: var(--gold-dark); color: var(--white); }
+.faq-list { max-width: 700px; margin: 40px auto 0; }
+.faq-item { padding: 20px 0; border-bottom: 1px solid var(--gold-dark); }
+.faq-item h3 { font-size: 16px; font-weight: 600; cursor: pointer; color: var(--gold); }
+.faq-item p { font-size: 14px; color: #fffbea; margin-top: 8px; }
+.cta {
+  text-align: center; padding: 80px 24px;
+  background: linear-gradient(135deg, var(--gold-dark), var(--black));
+  color: var(--gold);
+}
+.cta h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; max-width: 700px; margin: 0 auto 16px; }
+.cta p { color: #fffbea; max-width: 550px; margin: 0 auto 32px; }
+.cta .btn-primary { background: var(--gold); color: var(--black); font-weight: 700; }
+.cta .btn-primary:hover { background: var(--gold-dark); color: var(--white); }
+.cta .phone { margin-top: 20px; font-size: 14px; color: #e1c98a; }
+footer {
+  padding: 32px 24px; text-align: center;
+  font-size: 13px; color: #e1c98a; border-top: 1px solid var(--gold-dark); background: var(--black);
+}
+footer .logo { display: inline-block; margin-bottom: 8px; font-size: 20px; color: var(--gold); }
+@media (max-width: 768px) {
+nav { flex-direction: column; gap: 16px; }
+.nav-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+.pricing-card.featured { transform: none; }
+}
+</style>
 </head>
 <body>
-
 <!-- Nav -->
 <nav>
-  <div class="logo">FA<span>.</span></div>
-  <div class="nav-links">
-    <a href="#">What We Do</a>
-    <a href="#">Results</a>
-    <a href="#">Pricing</a>
-    <a href="mailto:burgercolin1@gmail.com?subject=Free%20Strategy%20Call" class="nav-cta">Book a Call</a>
-  </div>
+<div class="logo">FA<span>.</span></div>
+<div class="nav-links">
+<a href="#">What We Do</a>
+<a href="#">Results</a>
+<a href="#">Pricing</a>
+<a href="mailto:burgercolin1@gmail.com?subject=Free%20Strategy%20Call" class="nav-cta">Book a Call</a>
+</div>
 </nav>
-
 <!-- Hero -->
 <section class="hero">
-  <h1>Growth systems for <span>contractors & service pros</span></h1>
-  <div class="sub">More five-star reviews. More booked jobs. Less chasing.</div>
-  <p>Forge Ascent builds the reputation, visibility, and follow-up systems local service businesses need to dominate their market — and keep their calendars full.</p>
-  <div class="hero-buttons">
-    <a href="mailto:burgercolin1@gmail.com?subject=Free%20Strategy%20Call" class="btn-primary">Book Your Free Consultation</a>
-    <a href="#" class="btn-secondary">See What We Do</a>
-  </div>
-  <div class="hero-trust">Trusted by 200+ service businesses across the U.S.</div>
+<h1>Growth systems for contractors & service pros</h1>
+<div class="sub">More five-star reviews. More booked jobs. Less chasing.</div>
+<p>Forge Ascent builds the reputation, visibility, and follow-up systems local service businesses need to dominate their market — and keep their calendars full.</p>
+<div class="hero-buttons">
+<a href="mailto:burgercolin1@gmail.com?subject=Free%20Strategy%20Call" class="btn-primary">Book Your Free Consultation</a>
+<a href="#" class="btn-secondary">See What We Do</a>
+</div>
+<div class="hero-trust">Trusted by 200+ service businesses across the U.S.</div>
 </section>
-
 <!-- Stats -->
 <section class="stats">
-  <div class="stat"><h2>+38</h2><p>New reviews this week</p></div>
-  <div class="stat"><h2>12,400+</h2><p>Five-star reviews generated</p></div>
-  <div class="stat"><h2>3.8×</h2><p>Avg. increase in booked calls</p></div>
-  <div class="stat"><h2>&lt; 60s</h2><p>Average lead response time</p></div>
-  <div class="stat"><h2>94%</h2><p>Client retention rate</p></div>
+<div class="stat"><h2>+38</h2><p>New reviews this week</p></div>
+<div class="stat"><h2>12,400+</h2><p>Five-star reviews generated</p></div>
+<div class="stat"><h2>3.8×</h2><p>Avg. increase in booked calls</p></div>
+<div class="stat"><h2>&lt; 60s</h2><p>Average lead response time</p></div>
+<div class="stat"><h2>94%</h2><p>Client retention rate</p></div>
 </section>
-
 <!-- What We Do -->
 <section class="section">
-  <div class="container">
-    <div class="section-label">What We Do</div>
-    <h2>Everything you need to grow — one operating partner.</h2>
-    <p style="color:#5a5a72; margin-top:12px; max-width:600px;">Four connected systems that work together to fill your pipeline, build your reputation, and close more revenue.</p>
-    <div class="services">
-      <div class="service-card">
-        <h3>⭐ Five-Star Review Engine</h3>
-        <p>Automatically request, capture, and route reviews from happy customers straight to Google — turning every completed job into social proof.</p>
-        <a href="#">Learn more →</a>
-      </div>
-      <div class="service-card">
-        <h3>🔍 Google Visibility & SEO</h3>
-        <p>Local SEO, Google Business Profile optimization, and ranking strategies that put you in front of ready-to-buy homeowners in your service area.</p>
-        <a href="#">Learn more →</a>
-      </div>
-      <div class="service-card">
-        <h3>⚡ Automated Follow-Up</h3>
-        <p>Text and email sequences that respond to every lead in under 60 seconds, nurture cold estimates, and win back missed opportunities.</p>
-        <a href="#">Learn more →</a>
-      </div>
-      <div class="service-card">
-        <h3>📈 Lead-to-Customer Conversion</h3>
-        <p>Landing pages, call tracking, and CRM workflows engineered to turn more of your quotes into signed, paying jobs.</p>
-        <a href="#">Learn more →</a>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="section-label">What We Do</div>
+<h2>Everything you need to grow — one operating partner.</h2>
+<p style="color:#fffbea; margin-top:12px; max-width:600px;">Four connected systems that work together to fill your pipeline, build your reputation, and close more revenue.</p>
+<div class="services">
+<div class="service-card">
+<h3>⭐ Five-Star Review Engine</h3>
+<p>Automatically request, capture, and route reviews from happy customers straight to Google — turning every completed job into social proof.</p>
+<a href="#">Learn more →</a>
+</div>
+<div class="service-card">
+<h3>🔍 Google Visibility & SEO</h3>
+<p>Local SEO, Google Business Profile optimization, and ranking strategies that put you in front of ready-to-buy homeowners in your service area.</p>
+<a href="#">Learn more →</a>
+</div>
+<div class="service-card">
+<h3>⚡ Automated Follow-Up</h3>
+<p>Text and email sequences that respond to every lead in under 60 seconds, nurture cold estimates, and win back missed opportunities.</p>
+<a href="#">Learn more →</a>
+</div>
+<div class="service-card">
+<h3>📈 Lead-to-Customer Conversion</h3>
+<p>Landing pages, call tracking, and CRM workflows engineered to turn more of your quotes into signed, paying jobs.</p>
+<a href="#">Learn more →</a>
+</div>
+</div>
+</div>
 </section>
-
 <!-- Why -->
-<section class="section" style="background:#faf6f0;">
-  <div class="container">
-    <div class="section-label">Why Forge Ascent</div>
-    <h2>We're built for how service businesses actually operate.</h2>
-    <p style="color:#5a5a72; margin-top:12px; max-width:500px;">No fluff, no vanity dashboards. Just the systems, people, and accountability that move revenue.</p>
-    <div class="why-grid">
-      <div class="why-item">
-        <div class="icon">🔧</div>
-        <h3>Built for the Trades</h3>
-        <p>We only serve contractors and local service businesses. Every playbook is tested on real job sites, not agency slide decks.</p>
-      </div>
-      <div class="why-item">
-        <div class="icon">⚡</div>
-        <h3>Live in 14 Days</h3>
-        <p>Fast, structured onboarding gets your reviews, funnel, and automations working within two weeks — not two quarters.</p>
-      </div>
-      <div class="why-item">
-        <div class="icon">👥</div>
-        <h3>A Real Team Behind You</h3>
-        <p>Dedicated strategist, copywriter, and automation engineer on every account. No overseas ticket queues.</p>
-      </div>
-      <div class="why-item">
-        <div class="icon">📊</div>
-        <h3>ROI You Can See</h3>
-        <p>Transparent dashboards show new reviews, ranking movement, booked calls, and closed revenue — every single week.</p>
-      </div>
-    </div>
-    <div style="text-align:center; margin-top:40px;">
-      <a href="#" class="btn-primary">Talk to a strategist</a>
-    </div>
-  </div>
+<section class="section">
+<div class="container">
+<div class="section-label">Why Forge Ascent</div>
+<h2>We're built for how service businesses actually operate.</h2>
+<p style="color:#fffbea; margin-top:12px; max-width:500px;">No fluff, no vanity dashboards. Just the systems, people, and accountability that move revenue.</p>
+<div class="why-grid">
+<div class="why-item">
+<div class="icon">🔧</div>
+<h3>Built for the Trades</h3>
+<p>We only serve contractors and local service businesses. Every playbook is tested on real job sites, not agency slide decks.</p>
+</div>
+<div class="why-item">
+<div class="icon">⚡</div>
+<h3>Live in 14 Days</h3>
+<p>Fast, structured onboarding gets your reviews, funnel, and automations working within two weeks — not two quarters.</p>
+</div>
+<div class="why-item">
+<div class="icon">👥</div>
+<h3>A Real Team Behind You</h3>
+<p>Dedicated strategist, copywriter, and automation engineer on every account. No overseas ticket queues.</p>
+</div>
+<div class="why-item">
+<div class="icon">📊</div>
+<h3>ROI You Can See</h3>
+<p>Transparent dashboards show new reviews, ranking movement, booked calls, and closed revenue — every single week.</p>
+</div>
+</div>
+<div style="text-align:center; margin-top:40px;">
+<a href="#" class="btn-primary">Talk to a strategist</a>
+</div>
+</div>
 </section>
-
 <!-- Testimonials -->
 <section class="section testimonials">
-  <div class="container">
-    <div class="section-label">Client Results</div>
-    <h2>Contractors that scaled with Forge Ascent.</h2>
-    <div class="testimonial-grid">
-      <div class="testimonial">
-        <div class="stars">★★★★★</div>
-        <blockquote>"We went from 47 Google reviews to over 280 in six months. Our phone hasn't stopped ringing since."</blockquote>
-        <cite><strong>Marcus Reyes</strong><span>Owner, Reyes Roofing Co.</span></cite>
-      </div>
-      <div class="testimonial">
-        <div class="stars">★★★★★</div>
-        <blockquote>"Forge Ascent rebuilt our follow-up system and our close rate on estimates jumped from 22% to 41%."</blockquote>
-        <cite><strong>Jenna Whitfield</strong><span>GM, Whitfield HVAC</span></cite>
-      </div>
-      <div class="testimonial">
-        <div class="stars">★★★★★</div>
-        <blockquote>"We finally rank on page one for our city. The leads are better, bigger, and they already trust us before the first call."</blockquote>
-        <cite><strong>David Okafor</strong><span>President, Okafor Remodeling</span></cite>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="section-label">Client Results</div>
+<h2>Contractors that scaled with Forge Ascent.</h2>
+<div class="testimonial-grid">
+<div class="testimonial">
+<div class="stars">★★★★★</div>
+<blockquote>"We went from 47 Google reviews to over 280 in six months. Our phone hasn't stopped ringing since."</blockquote>
+<cite><strong>Marcus Reyes</strong><span>Owner, Reyes Roofing Co.</span></cite>
+</div>
+<div class="testimonial">
+<div class="stars">★★★★★</div>
+<blockquote>"Forge Ascent rebuilt our follow-up system and our close rate on estimates jumped from 22% to 41%."</blockquote>
+<cite><strong>Jenna Whitfield</strong><span>GM, Whitfield HVAC</span></cite>
+</div>
+<div class="testimonial">
+<div class="stars">★★★★★</div>
+<blockquote>"We finally rank on page one for our city. The leads are better, bigger, and they already trust us before the first call."</blockquote>
+<cite><strong>David Okafor</strong><span>President, Okafor Remodeling</span></cite>
+</div>
+</div>
+</div>
 </section>
-
 <!-- Pricing -->
 <section class="section">
-  <div class="container">
-    <div class="section-label">Pricing</div>
-    <h2>Simple, transparent plans built for growth.</h2>
-    <p style="color:#5a5a72; margin-top:12px;">$149 one-time setup on every plan. Month-to-month after that. No long-term contracts, cancel anytime.</p>
-    <div class="pricing-grid">
-      <div class="pricing-card">
-        <div class="plan">Base</div>
-        <h3>$349 <span>/mo</span></h3>
-        <div class="desc">+ $149 one-time setup</div>
-        <ul>
-          <li>Automated review requests</li>
-          <li>Google Business Profile optimization</li>
-          <li>Monthly performance report</li>
-        </ul>
-        <a href="mailto:burgercolin1@gmail.com?subject=Getting%20Started%20with%20Forge%20Ascent%20-%20Base" class="btn-pricing">Get started</a>
-      </div>
-
-      <div class="pricing-card featured">
-        <div class="badge">Most Popular</div>
-        <div class="plan">Ascent</div>
-        <h3>$697 <span>/mo</span></h3>
-        <div class="desc">+ $149 one-time setup</div>
-        <ul>
-          <li>Everything in Base</li>
-          <li>Local SEO (GBP posts & citations)</li>
-          <li>Review response management</li>
-          <li>Competitor tracking report</li>
-        </ul>
-        <a href="mailto:burgercolin1@gmail.com?subject=Getting%20Started%20with%20Forge%20Ascent%20-%20Ascent" class="btn-pricing">Get started</a>
-      </div>
-
-      <div class="pricing-card">
-        <div class="plan">Summit</div>
-        <h3>$1,098 <span>/mo</span></h3>
-        <div class="desc">+ $149 one-time setup</div>
-        <ul>
-          <li>Everything in Ascent</li>
-          <li>Lead follow-up automation</li>
-          <li>Quarterly strategy call</li>
-          <li>Priority support</li>
-        </ul>
-        <a href="mailto:burgercolin1@gmail.com?subject=Getting%20Started%20with%20Forge%20Ascent%20-%20Summit" class="btn-pricing">Get started</a>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="section-label">Pricing</div>
+<h2>Simple, transparent plans built for growth.</h2>
+<p style="color:#fffbea; margin-top:12px;">$149 one-time setup on every plan. Month-to-month after that. No long-term contracts, cancel anytime.</p>
+<div class="pricing-grid">
+<div class="pricing-card">
+<div class="plan">Base</div>
+<h3>$349 <span>/mo</span></h3>
+<div class="desc">+ $149 one-time setup</div>
+<ul>
+<li>Automated review requests</li>
+<li>Google Business Profile optimization</li>
+<li>Monthly performance report</li>
+</ul>
+<a href="mailto:burgercolin1@gmail.com?subject=Getting%20Started%20with%20Forge%20Ascent%20-%20Base" class="btn-pricing">Get started</a>
+</div>
+<div class="pricing-card featured">
+<div class="badge">Most Popular</div>
+<div class="plan">Ascent</div>
+<h3>$697 <span>/mo</span></h3>
+<div class="desc">+ $149 one-time setup</div>
+<ul>
+<li>Everything in Base</li>
+<li>Local SEO (GBP posts & citations)</li>
+<li>Review response management</li>
+<li>Competitor tracking report</li>
+</ul>
+<a href="mailto:burgercolin1@gmail.com?subject=Getting%20Started%20with%20Forge%20Ascent%20-%20Ascent" class="btn-pricing">Get started</a>
+</div>
+<div class="pricing-card">
+<div class="plan">Summit</div>
+<h3>$1,098 <span>/mo</span></h3>
+<div class="desc">+ $149 one-time setup</div>
+<ul>
+<li>Everything in Ascent</li>
+<li>Lead follow-up automation</li>
+<li>Quarterly strategy call</li>
+<li>Priority support</li>
+</ul>
+<a href="mailto:burgercolin1@gmail.com?subject=Getting%20Started%20with%20Forge%20Ascent%20-%20Summit" class="btn-pricing">Get started</a>
+</div>
+</div>
+</div>
 </section>
-
 <!-- FAQ -->
-<section class="section" style="background:#faf6f0;">
-  <div class="container">
-    <div class="section-label" style="text-align:center;">FAQ</div>
-    <h2 style="margin:0 auto; text-align:center;">Answers before you book.</h2>
-    <div class="faq-list">
-      <div class="faq-item"><h3>How quickly will I see results?</h3><p>Most clients see new reviews and follow-up automations live within 14 days of onboarding. Ranking and lead-volume improvements typically build over 60-90 days.</p></div>
-      <div class="faq-item"><h3>Do you work with my industry?</h3><p>We focus on contractors and local service businesses — roofing, HVAC, plumbing, electrical, remodeling, and similar trades.</p></div>
-      <div class="faq-item"><h3>Do I need to sign a long-term contract?</h3><p>No. All plans are month-to-month after a one-time $149 setup. Cancel anytime.</p></div>
-      <div class="faq-item"><h3>Will this replace my current team or tools?</h3><p>No — we plug into what you already use. We build the systems and automations around your existing team and tools rather than replacing them.</p></div>
-      <div class="faq-item"><h3>How is Forge Ascent different from a typical marketing agency?</h3><p>We're built specifically for the trades, with hands-on strategists (not overseas ticket queues) and transparent, weekly-visible ROI — not vanity dashboards.</p></div>
-    </div>
-  </div>
+<section class="section">
+<div class="container">
+<div class="section-label" style="text-align:center;">FAQ</div>
+<h2 style="margin:0 auto; text-align:center; color:var(--gold)">Answers before you book.</h2>
+<div class="faq-list">
+<div class="faq-item"><h3>How quickly will I see results?</h3><p>Most clients see new reviews and follow-up automations live within 14 days of onboarding. Ranking and lead-volume improvements typically build over 60-90 days.</p></div>
+<div class="faq-item"><h3>Do you work with my industry?</h3><p>We focus on contractors and local service businesses — roofing, HVAC, plumbing, electrical, remodeling, and similar trades.</p></div>
+<div class="faq-item"><h3>Do I need to sign a long-term contract?</h3><p>No. All plans are month-to-month after a one-time $149 setup. Cancel anytime.</p></div>
+<div class="faq-item"><h3>Will this replace my current team or tools?</h3><p>No — we plug into what you already use. We build the systems and automations around your existing team and tools rather than replacing them.</p></div>
+<div class="faq-item"><h3>How is Forge Ascent different from a typical marketing agency?</h3><p>We're built specifically for the trades, with hands-on strategists (not overseas ticket queues) and transparent, weekly-visible ROI — not vanity dashboards.</p></div>
+</div>
+</div>
 </section>
-
 <!-- CTA -->
 <section class="cta">
-  <h2>Ready to build a business that runs like it should?</h2>
-  <p>Book a free 30-minute strategy call. We'll audit your reviews, Google presence, and follow-up — and show you exactly where you're leaving revenue on the table.</p>
-  <a href="mailto:burgercolin1@gmail.com?subject=Free%20Strategy%20Call" class="btn-primary">Book Your Free Consultation</a>
-  <div class="phone">
-    No cost, no pressure &middot; Personalized growth plan &middot; Answers specific to your trade<br>
-    Email us at burgercolin1@gmail.com<br>
-    Responses within 1 business hour, Mon–Fri.
-  </div>
+<h2>Ready to build a business that runs like it should?</h2>
+<p>Book a free 30-minute strategy call. We'll audit your reviews, Google presence, and follow-up — and show you exactly where you're leaving revenue on the table.</p>
+<a href="mailto:burgercolin1@gmail.com?subject=Free%20Strategy%20Call" class="btn-primary">Book Your Free Consultation</a>
+<div class="phone">
+No cost, no pressure &middot; Personalized growth plan &middot; Answers specific to your trade<br>
+Email us at burgercolin1@gmail.com<br>
+Responses within 1 business hour, Mon–Fri.
+</div>
 </section>
-
 <!-- Footer -->
 <footer>
-  <div class="logo">FA<span>.</span></div>
-  <p>Forge Ascent &middot; © 2026 Forge Ascent. All rights reserved.</p>
+<div class="logo">FA<span>.</span></div>
+<p>Forge Ascent &middot; © 2026 Forge Ascent. All rights reserved.</p>
 </footer>
-
 </body>
 </html>
