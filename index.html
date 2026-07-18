@@ -43,20 +43,29 @@ nav {
 .hero {
   text-align: center; padding: 80px 24px 60px;
   background: linear-gradient(135deg, var(--black) 0%, var(--charcoal) 100%);
+  display: flex; flex-direction: column; align-items: center;
+}
+.hero-img {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 32px;
+  display: block;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+  border-radius: 32px;
+  background: #181818;
+  position: relative;
 }
 .hero h1 {
   font-size: clamp(36px, 6vw, 56px); font-weight: 900;
-  line-height: 1.15; letter-spacing: -1px; max-width: 850px; margin: 0 auto 16px; color: var(--gold);
+  line-height: 1.15; letter-spacing: -1px; max-width: 850px; margin: 0 auto 12px; color: var(--gold);
 }
 .hero .sub {
-  font-size: 18px; color: var(--gold); max-width: 650px;
-  margin: 0 auto 32px; font-weight: 500;
+  font-size: 22px; color: #fffbea; max-width: 600px; margin: 0 auto 24px; font-weight: 500;
 }
-.hero p {
-  font-size: 16px; color: #fffbea; max-width: 700px;
-  margin: 0 auto 40px;
+.hero-jingle {
+  font-size: 18px; color: var(--gold); max-width: 520px; margin: 0 auto 36px; font-weight: 600; letter-spacing: 0.5px;
 }
-.hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.hero-buttons { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
 .btn-primary {
   background: var(--gold); color: var(--black); padding: 16px 32px;
   border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 16px;
@@ -71,7 +80,7 @@ nav {
   border: 2px solid var(--gold); display: inline-block; transition: background 0.2s, color 0.2s;
 }
 .btn-secondary:hover { background: var(--gold); color: var(--black); }
-.hero-trust { margin-top: 40px; font-size: 14px; color: #fffbea; }
+.hero-trust { margin-top: 36px; font-size: 14px; color: #fffbea; }
 .stats {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 24px; padding: 48px 24px; text-align: center;
@@ -180,14 +189,15 @@ nav { flex-direction: column; gap: 16px; }
 </nav>
 <!-- Hero -->
 <section class="hero">
-<h1>Growth systems for contractors & service pros</h1>
-<div class="sub">More five-star reviews. More booked jobs. Less chasing.</div>
-<p>Forge Ascent builds the reputation, visibility, and follow-up systems local service businesses need to dominate their market — and keep their calendars full.</p>
-<div class="hero-buttons">
-<a href="mailto:burgercolin1@gmail.com?subject=Free%20Strategy%20Call" class="btn-primary">Book Your Free Consultation</a>
-<a href="#" class="btn-secondary">See What We Do</a>
-</div>
-<div class="hero-trust">Trusted by 200+ service businesses across the U.S.</div>
+  <img src="/data/.openclaw/media/tool-image-generation/image-1---fcf8cb57-f520-42ae-9dd1-393a5676f939.png" alt="Forge Ascent Mascot: Minimal geometric human climbing with briefcase" class="hero-img" />
+  <h1>Forge Your Climb</h1>
+  <div class="sub">Ascending beyond ordinary—with the systems that build revenue, not just reputation.</div>
+  <div class="hero-jingle">Your path. Your pace. Our climb—together.</div>
+  <div class="hero-buttons">
+    <a href="mailto:burgercolin1@gmail.com?subject=Start%20Your%20Ascent" class="btn-primary">Start Your Ascent</a>
+    <a href="#" class="btn-secondary">See How It Works</a>
+  </div>
+  <div class="hero-trust">Trusted by growing businesses ready for what’s next.</div>
 </section>
 <!-- Stats -->
 <section class="stats">
